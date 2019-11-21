@@ -1,16 +1,5 @@
-# Webring: A Plugin for Pelican
-
-Adds a webring to your site from a list of web feeds
-
-Installation
-------------
-
-This plugin can be installed via:
-
-    pip install pelican-webring
-
 Contributing
-------------
+============
 
 Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
 
