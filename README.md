@@ -102,7 +102,7 @@ Edit the `notmyidea/templates/base.html` file and make it look like this:
 If there were no links or social widgets, the result would be like in the
 image below:
 
-![Example of Webring](https://github.com/pelican-plugins/webring/raw/master/webring/example.png)
+![Example of Webring](https://github.com/pelican-plugins/webring/raw/master/example.png)
 
 Contributing
 ------------
