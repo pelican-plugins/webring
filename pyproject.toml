@@ -2,7 +2,7 @@
 name = "pelican-webring"
 version = "0.0.1"
 description = "Adds a webring to your site from a list of web feeds"
-authors = [David Alfonso <developer@davidalfonso.es>]
+authors = ["David Alfonso <developer@davidalfonso.es>"]
 license = "AGPL-3.0"
 readme = "README.md"
 keywords = ["pelican", "plugin"]
@@ -38,6 +38,7 @@ classifiers = [
 python = "^3.6"
 pelican = "^4.2"
 markdown = {version = "^3.1.1",optional = true}
+feedparser = "^5.2"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^19.10b0",allows-prereleases = true}
