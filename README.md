@@ -1,8 +1,10 @@
-# Webring: A Plugin for Pelican
+# Webring
 
-This plugin retrieves the latest posts from a list of web feeds and makes
-them available in templates, effectively creating a [partial webring][1]. Posts
-are sorted from newer to older.
+This Pelican plugin adds a webring to your site from a list of web feeds.
+
+It retrieves the latest posts from a list of web feeds and makes them available
+in templates, effectively creating a [partial webring][1]. Posts are sorted
+from newer to older.
 
 It is inspired by [openring](https://git.sr.ht/~sircmpwn/openring), a tool for
 generating an HTML file to include in your [SSG][2] from a template and a list of
