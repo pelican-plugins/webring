@@ -1,1 +1,1 @@
-from .webring import *
+from .webring import *  # NOQA
