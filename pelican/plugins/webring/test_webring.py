@@ -4,19 +4,14 @@
 Test Atom and RSS feeds have been generated using Pelican itself using the
 contents of its `samples/content` folder.
 """
-import unittest
-import os
 from collections import Counter
-from operator import itemgetter, attrgetter
+from operator import attrgetter, itemgetter
+import os
+import unittest
 
-from pelican.settings import DEFAULT_CONFIG
 from pelican.generators import Generator
-from pelican.tests.support import (
-    module_exists,
-    get_settings,
-    get_context,
-)
-
+from pelican.settings import DEFAULT_CONFIG
+from pelican.tests.support import get_context, get_settings, module_exists
 import webring
 
 

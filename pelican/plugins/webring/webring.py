@@ -5,12 +5,13 @@ Webring plugin for Pelican
 
 A plugin to create a webring in your web site from a list of web feeds.
 """
-import re
-from six.moves.urllib.request import Request, urlopen
-from six.moves.urllib.error import URLError
 from collections import namedtuple
 from logging import warning
 from operator import attrgetter
+import re
+
+from six.moves.urllib.error import URLError
+from six.moves.urllib.request import Request, urlopen
 
 from pelican import signals, utils
 
