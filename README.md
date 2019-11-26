@@ -1,5 +1,7 @@
 # Webring
 
+[![Build Status](https://github.com/pelican-plugins/webring/workflows/build/badge.svg)](https://github.com/pelican-plugins/webring/actions)
+
 This Pelican plugin adds a webring to your site from a list of web feeds.
 
 It retrieves the latest posts from a list of web feeds and makes them available
