@@ -1,6 +1,6 @@
 # Webring
 
-[![Build Status](https://github.com/pelican-plugins/webring/workflows/build/badge.svg)](https://github.com/pelican-plugins/webring/actions)
+[![Build Status](https://github.com/pelican-plugins/webring/workflows/build/badge.svg)](https://github.com/pelican-plugins/webring/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
 
 This Pelican plugin adds a webring to your site from a list of web feeds.
 
@@ -119,4 +119,3 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
 [1]: https://en.wikipedia.org/wiki/Webring "In a proper webring, websites would be linked in a circular structure."
 [2]: https://en.wikipedia.org/wiki/Category:Static_website_generators "Static Site Generator"
-
