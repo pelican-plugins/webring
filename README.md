@@ -1,6 +1,6 @@
 # Webring
 
-[![Build Status](https://github.com/pelican-plugins/webring/workflows/build/badge.svg)](https://github.com/pelican-plugins/webring/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
+[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/webring/build)](https://github.com/pelican-plugins/webring/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
 
 This Pelican plugin adds a webring to your site from a list of web feeds.
 
