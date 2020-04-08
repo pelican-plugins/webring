@@ -2,15 +2,18 @@
 
 [![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/webring/build)](https://github.com/pelican-plugins/webring/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
 
-This Pelican plugin adds a webring to your site from a list of web feeds.
+This Pelican plugin adds a webring or feed aggregation to your site from a list
+of web feeds.
 
 It retrieves the latest posts from a list of web feeds and makes them available
-in templates, effectively creating a [partial webring][1]. Posts are sorted
-from newer to older.
+in templates, effectively creating a [partial webring][1] or feed aggregation.
+Posts are sorted from newer to older.
 
 It is inspired by [openring](https://git.sr.ht/~sircmpwn/openring), a tool for
-generating an HTML file to include in your [SSG][2] from a template and a list of
-web feeds.
+generating an HTML file to include in your [SSG][2] from a template and a list
+of web feeds, and
+[pelican-planet](https://framagit.org/bochecha/pelican-planet), a Pelican
+plugin for creating feed aggregations.
 
 Installation
 ------------
@@ -78,12 +81,15 @@ according to this plugin's settings.
 - `source_link`: A link to the web feed.
 - `source_id`: An identification field provided in some web feeds.
 
-See the following section for an example on how to iterate the article list.
+You can use `webring_articles` in any kind of content type, including _pages_
+and _articles_. Read the following sections for examples on how to use this
+variable in your templates.
 
-**Example**
+### Adding a Webring section in the bottom of articles
 
-Imagine we'd like to put our webring in the bottom of the default Pelican
-template (ie. notmyidea). To simplify, we'll use the existing CSS classes.
+Imagine we'd like to put our webring in the bottom of articles, using the
+default Pelican template (ie. notmyidea). To simplify, we'll use the existing
+CSS classes.
 
 Edit the `notmyidea/templates/base.html` file and make it look like this:
 
@@ -106,7 +112,55 @@ Edit the `notmyidea/templates/base.html` file and make it look like this:
 If there were no links or social widgets, the result would be like in the
 image below:
 
-![Example of Webring](https://github.com/pelican-plugins/webring/raw/master/example.png)
+![Footer Webring](https://github.com/pelican-plugins/webring/raw/master/webring-footer.jpg)
+
+### Adding a feed aggregation page
+
+In this case, we'd like to generate a new page with all feed contents processed
+by this plugin. For example, imagine we'd like to access that page as:
+`https://my-domain.com/feed-aggregation`.
+
+This objective can be accomplished in several ways in Pelican. We're showing
+here one that only requires a new HTML template.
+
+The following is an example template file named `feed-aggregation.html` based on
+`page.html` that should reside in your theme template directory:
+
+```
+{% extends "base.html" %}
+{% block title %}Feed aggregation{% endblock %}
+
+{% block content %}
+<section id="content" class="body">
+    <h1 class="entry-title">Feed aggregation</h1>
+
+    {% if WEBRING_FEED_URLS %}
+        {% for article in webring_articles %}
+            <article class="hentry">
+                <header>
+                    <h2><a href="{{ article.link }}">{{ article.title }}</a></h2>
+                </header>
+                <p>{{ article.date|strftime('%d %B %Y') }}</p>
+                <div class="entry-content">
+                {{ article.summary}}
+                </div>
+            </article>
+        {% endfor %}
+    {% endif %}
+
+</section>
+{% endblock %}
+```
+
+Finally, in order for our template to be rendered in the wanted location, we add the following **template page** to our `pelicanconf.py`. Note that `feed-aggregation.html` is relative to your theme's template directory.
+
+```
+TEMPLATE_PAGES = { 'feed-aggregation.html': 'feed-aggregation/index.html' }
+```
+
+The final result would be as in the image below:
+
+![Page Webring](https://github.com/pelican-plugins/webring/raw/master/webring-page.jpg)
 
 Contributing
 ------------
