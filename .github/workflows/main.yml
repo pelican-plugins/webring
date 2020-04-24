@@ -9,13 +9,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
 
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python 3.7
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: ${{ matrix.python-version }}
       - name: Upgrade Pip
         run: python -m pip install -U pip
       - name: Install Poetry
@@ -23,8 +26,9 @@ jobs:
       - name: Install dependencies
         run: |
           poetry run pip install -U pip
-          poetry run pip install -e git://github.com/getpelican/pelican.git#egg=pelican
           poetry install
+          poetry run pip uninstall -y pelican
+          poetry run pip install -e git://github.com/getpelican/pelican.git#egg=pelican
       - name: Run tests
         run: poetry run invoke tests
       - name: Run linters
