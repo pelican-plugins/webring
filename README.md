@@ -41,9 +41,10 @@ WEBRING_ARTICLES_PER_FEED = 1
 The maximum number of articles per feed.
 
 ```
-WEBRING_SUMMARY_LENGTH = 128
+WEBRING_SUMMARY_WORDS = 20
 ```
-The maximum length of post summaries.
+The maximum number of words of post summaries. If set to 0, truncation is
+disabled.
 
 ```
 WEBRING_CLEAN_SUMMARY_HTML = True

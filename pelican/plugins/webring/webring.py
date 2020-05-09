@@ -19,11 +19,10 @@ except ImportError:
     warning("Webring Plugin: Failed to load dependency (feedparser)")
 
 WEBRING_VERSION = "0.1"
-
 WEBRING_FEED_URLS_STR = "WEBRING_FEED_URLS"
 WEBRING_MAX_ARTICLES_STR = "WEBRING_MAX_ARTICLES"
 WEBRING_ARTICLES_PER_FEED_STR = "WEBRING_ARTICLES_PER_FEED"
-WEBRING_SUMMARY_LENGTH_STR = "WEBRING_SUMMARY_LENGTH"
+WEBRING_SUMMARY_WORDS_STR = "WEBRING_SUMMARY_WORDS"
 WEBRING_CLEAN_SUMMARY_HTML_STR = "WEBRING_CLEAN_SUMMARY_HTML"
 
 Article = namedtuple(
@@ -44,9 +43,17 @@ def initialized(pelican):
     DEFAULT_CONFIG.setdefault(WEBRING_FEED_URLS_STR, [])
     DEFAULT_CONFIG.setdefault(WEBRING_MAX_ARTICLES_STR, 3)
     DEFAULT_CONFIG.setdefault(WEBRING_ARTICLES_PER_FEED_STR, 1)
-    DEFAULT_CONFIG.setdefault(WEBRING_SUMMARY_LENGTH_STR, 128)
+    DEFAULT_CONFIG.setdefault(WEBRING_SUMMARY_WORDS_STR, 20)
     DEFAULT_CONFIG.setdefault(WEBRING_CLEAN_SUMMARY_HTML_STR, True)
     if pelican:
+        # Check deprecated settings
+        if "WEBRING_SUMMARY_LENGTH" in pelican.settings:
+            warning(
+                "webring plugin: '%s' has been deprecated by '%s'",
+                "WEBRING_SUMMARY_LENGTH",
+                "WEBRING_SUMMARY_WORDS",
+            )
+        # Set default values for unset settings
         for name, value in DEFAULT_CONFIG.items():
             if name.startswith("WEBRING"):
                 pelican.settings.setdefault(name, value)
@@ -154,20 +161,13 @@ def get_entry_summary(entry, settings):
 
     summary = entry.get("description", "")
 
+    if settings[WEBRING_CLEAN_SUMMARY_HTML_STR] > 0:
+        summary = utils.truncate_html_words(
+            summary, settings[WEBRING_SUMMARY_WORDS_STR]
+        )
+
     # feedparser sanitizes html by default, but it can still contain html tags.
     if settings[WEBRING_CLEAN_SUMMARY_HTML_STR]:
         summary = cleanhtml(summary)
-
-    if len(summary) > settings[WEBRING_SUMMARY_LENGTH_STR]:
-        words = summary.split()
-        summary = ""
-        for w in words:
-            chars_left = settings[WEBRING_SUMMARY_LENGTH_STR] - len(summary)
-            if chars_left > 0:
-                summary += w if chars_left < len(w) else w[:chars_left]
-                summary += " "
-            else:
-                break
-        summary = summary[: len(summary) - 1] + "..."
 
     return summary

@@ -76,16 +76,22 @@ class WebringTest(unittest.TestCase):
         self.assertTrue(all(s.find("<") >= 0 for s in summaries))
 
     def test_summary_length(self):
-        self.settings[webring.WEBRING_SUMMARY_LENGTH_STR] = 10
+        self.settings[webring.WEBRING_SUMMARY_WORDS_STR] = 3
         webring.fetch_feeds(self.generators)
         articles = self.get_fetched_articles()
-        self.assertTrue(all(len(a.summary) - len("...") <= 10 for a in articles))
+        self.assertTrue(all(len(a.summary) <= 30 for a in articles))
 
     def test_long_summary_length(self):
-        self.settings[webring.WEBRING_SUMMARY_LENGTH_STR] = 1000
+        self.settings[webring.WEBRING_SUMMARY_WORDS_STR] = 100
         webring.fetch_feeds(self.generators)
         articles = self.get_fetched_articles()
-        self.assertTrue(not any(a.summary.endswith("...") for a in articles))
+        self.assertTrue(not any(a.summary.endswith("…") for a in articles))
+
+    def test_summary_disabled(self):
+        self.settings[webring.WEBRING_SUMMARY_WORDS_STR] = 0
+        webring.fetch_feeds(self.generators)
+        articles = self.get_fetched_articles()
+        self.assertFalse(any(a.summary.endswith("…") for a in articles))
 
     def test_malformed_url(self):
         self.settings[webring.WEBRING_FEED_URLS_STR] = [
