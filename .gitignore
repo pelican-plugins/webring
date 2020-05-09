@@ -1,0 +1,5 @@
+poetry.lock
+*.swp
+*.egg-info
+venv
+.venv
