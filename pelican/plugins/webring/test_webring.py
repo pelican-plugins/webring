@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for webring plugin
 
 Test Atom and RSS feeds have been generated using Pelican itself using the

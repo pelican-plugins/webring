@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Webring plugin for Pelican
 ==========================
@@ -9,9 +8,8 @@ from collections import namedtuple
 from logging import warning
 from operator import attrgetter
 import re
-
-from six.moves.urllib.error import URLError
-from six.moves.urllib.request import Request, urlopen
+from urllib.error import URLError
+from urllib.request import Request, urlopen
 
 from pelican import signals, utils
 
