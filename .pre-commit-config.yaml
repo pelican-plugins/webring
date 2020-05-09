@@ -22,7 +22,6 @@ repos:
     hooks:
       - id: flake8
         args: [--max-line-length=88]
-        language_version: python3.7
 
   - repo: https://github.com/pre-commit/mirrors-isort
     rev: v4.3.21
