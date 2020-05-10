@@ -2,9 +2,9 @@
 Webring plugin for Pelican
 ==========================
 
-A plugin to create a webring in your web site from a list of web feeds.
+A plugin to create a webring or feed aggregation in your web site from a list
+of web feeds.
 """
-from collections import namedtuple
 from logging import warning
 from operator import attrgetter
 import re
@@ -25,10 +25,28 @@ WEBRING_ARTICLES_PER_FEED_STR = "WEBRING_ARTICLES_PER_FEED"
 WEBRING_SUMMARY_WORDS_STR = "WEBRING_SUMMARY_WORDS"
 WEBRING_CLEAN_SUMMARY_HTML_STR = "WEBRING_CLEAN_SUMMARY_HTML"
 
-Article = namedtuple(
-    "Article",
-    ["title", "link", "date", "summary", "source_title", "source_link", "source_id"],
-)
+
+class Article:
+    def __init__(
+        self, entry: feedparser.FeedParserDict, source: feedparser.FeedParserDict
+    ):
+        self._entry = entry
+        self._source = source
+
+    def __getattr__(self, key):
+        """Lazy build special attributes"""
+        try:
+            if key.startswith("source_"):
+                entry_id = key.partition("_")[2]
+                return self._source[entry_id]
+            elif key in ["published", "updated", "created", "expired"]:
+                return get_entry_datetime(key, self._entry)
+            elif key == "summary":
+                return get_entry_summary(self._entry)
+            else:
+                return self._entry[key]
+        except KeyError:
+            return ""
 
 
 def register():
@@ -57,16 +75,17 @@ def initialized(pelican):
         for name, value in DEFAULT_CONFIG.items():
             if name.startswith("WEBRING"):
                 pelican.settings.setdefault(name, value)
+    # save global settings
+    global settings
+    settings = pelican.settings if pelican else DEFAULT_CONFIG
 
 
 def fetch_feeds(generators):
-    settings = get_pelican_settings(generators)
-
     fetched_articles = []
     for feed_url in settings[WEBRING_FEED_URLS_STR]:
         feed_html = get_feed_html(feed_url)
         if feed_html:
-            fetched_articles.extend(get_feed_articles(feed_html, feed_url, settings))
+            fetched_articles.extend(get_feed_articles(feed_html, feed_url))
 
     fetched_articles = sorted(fetched_articles, key=attrgetter("date"), reverse=True)
 
@@ -76,12 +95,6 @@ def fetch_feeds(generators):
 
     for generator in generators:
         generator.context["webring_articles"] = fetched_articles
-
-
-def get_pelican_settings(generators):
-    """All generators contain a reference to the Pelican settings."""
-    assert len(generators) > 0
-    return generators[0].settings
 
 
 def get_feed_html(feed_url):
@@ -108,7 +121,7 @@ def get_feed_html(feed_url):
         warning("webring plugin: wrong url provided (%s).", e)
 
 
-def get_feed_articles(feed_html, feed_url, settings):
+def get_feed_articles(feed_html, feed_url):
     parsed_feed = feedparser.parse(feed_html)
 
     if parsed_feed.bozo:
@@ -118,48 +131,35 @@ def get_feed_articles(feed_html, feed_url, settings):
             parsed_feed.bozo_exception,
         )
 
-    articles = []
-    for n, entry in enumerate(parsed_feed.entries):
-        if n == settings[WEBRING_ARTICLES_PER_FEED_STR]:
-            break
-
-        published_dt = get_entry_datetime(entry)
-        truncated_summary = get_entry_summary(entry, settings)
-
-        articles.append(
-            Article(
-                title=entry.get("title", ""),
-                link=entry.get("link", ""),
-                date=published_dt,
-                summary=truncated_summary,
-                source_title=parsed_feed.feed.get("title", ""),
-                source_link=parsed_feed.feed.get("link", ""),
-                source_id=parsed_feed.feed.get("id", ""),
-            )
-        )
-
-    return articles
+    max_articles = settings[WEBRING_ARTICLES_PER_FEED_STR]
+    return [Article(e, parsed_feed.feed) for e in parsed_feed.entries[:max_articles]]
 
 
-def get_entry_datetime(entry):
+def get_entry_datetime(key, entry):
     try:
-        return utils.get_date(entry.get("published", ""))
+        # Empty string raises ValueError in dateutil.parser.parse()
+        return utils.get_date(entry.get(key, ""))
     except ValueError:
         warning(
-            'Webring Plugin: Invalid date on feed entry titled "%s"'
-            % entry.get("title", "Unknown title")
+            "Webring Plugin: Invalid '%s' on feed entry titled '%s'",
+            key,
+            entry.get("title", "Unknown title"),
         )
-        return utils.SafeDatetime.now()
+        return None
 
 
-def get_entry_summary(entry, settings):
+def get_entry_summary(entry):
     # https://stackoverflow.com/a/12982689/11441
     def cleanhtml(raw_html):
         cleanr = re.compile("<.*?>")
         cleantext = re.sub(cleanr, "", raw_html)
         return cleantext
 
-    summary = entry.get("description", "")
+    try:
+        # this will get the first of 'summary' and 'subtitle'
+        summary = entry["description"]
+    except KeyError:
+        summary = ""
 
     if settings[WEBRING_CLEAN_SUMMARY_HTML_STR] > 0:
         summary = utils.truncate_html_words(

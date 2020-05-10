@@ -6,8 +6,10 @@ contents of its `samples/content` folder.
 from collections import Counter
 from operator import attrgetter, itemgetter
 import os
+from types import SimpleNamespace
 import unittest
 
+from pelican import utils
 from pelican.generators import Generator
 from pelican.settings import DEFAULT_CONFIG
 from pelican.tests.support import get_context, get_settings, module_exists
@@ -22,27 +24,32 @@ class NullGenerator(Generator):
 class WebringTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        webring.initialized(None)
         cls.generators = [NullGenerator(get_context(), get_settings(), "", "", "")]
         cls.settings = cls.generators[0].settings
+        cls.pelican = SimpleNamespace()
+        cls.pelican.settings = cls.settings
 
     def setUp(self):
         self.reset_settings()
         self.set_feeds()
+        webring.initialized(self.pelican)
 
     def reset_settings(self):
         for name, value in self.settings.items():
             if name.startswith("WEBRING"):
                 self.settings[name] = DEFAULT_CONFIG[name]
 
-    def set_feeds(self):
+    def feed_url(self, feed_type):
         test_data_path = os.path.join(os.path.dirname(__file__), "test_data")
-        # Contents will be duplicated but still different, as they come from
-        # two different feed URLs.
-        self.settings[webring.WEBRING_FEED_URLS_STR] = [
-            "file://" + os.path.join(test_data_path, "pelican-rss.xml"),
-            "file://" + os.path.join(test_data_path, "pelican-atom.xml"),
-        ]
+        return "file://" + os.path.join(
+            test_data_path, "pelican-{}.xml".format(feed_type)
+        )
+
+    def set_feeds(self, feeds=None):
+        default = [self.feed_url("rss"), self.feed_url("atom")]
+        self.settings[webring.WEBRING_FEED_URLS_STR] = (
+            default if feeds is None else feeds
+        )
 
     def get_fetched_articles(self):
         return self.generators[0].context["webring_articles"]
@@ -61,6 +68,36 @@ class WebringTest(unittest.TestCase):
         articles = self.get_fetched_articles()
         feed_counts = Counter(a.source_id for a in articles)
         self.assertEqual(list(map(itemgetter(1), feed_counts.items())), [3, 3])
+
+    def test_common_attributes(self):
+        """These are attributes present in ALL articles in both RSS and Atom test feeds.
+        Optional attributes are not checked.
+        """
+        webring.fetch_feeds(self.generators)
+        articles = self.get_fetched_articles()
+        for a in articles:
+            self.assertIsInstance(a.published, utils.SafeDatetime)
+            self.assertIsInstance(a.updated, utils.SafeDatetime)
+            self.assertEqual(a.created, None)
+            self.assertEqual(a.expired, None)
+            self.assertNotEqual(a.author, "")
+            self.assertNotEqual(a.link, "")
+            self.assertNotEqual(a.id, "")
+            self.assertNotEqual(a.summary, "")
+            self.assertNotEqual(a.source_title, "")
+            self.assertNotEqual(a.source_link, "")
+
+    def test_common_atom_attributes(self):
+        self.set_feeds([self.feed_url("atom")])
+        webring.fetch_feeds(self.generators)
+        articles = self.get_fetched_articles()
+        for a in articles:
+            self.assertNotEqual(a.source_id, "")
+
+    def test_invalid_entry_attribute(self):
+        webring.fetch_feeds(self.generators)
+        articles = self.get_fetched_articles()
+        self.assertEqual(articles[0].invalid_attribute, "")
 
     def test_clean_summary(self):
         webring.fetch_feeds(self.generators)
@@ -94,9 +131,7 @@ class WebringTest(unittest.TestCase):
         self.assertFalse(any(a.summary.endswith("…") for a in articles))
 
     def test_malformed_url(self):
-        self.settings[webring.WEBRING_FEED_URLS_STR] = [
-            "://pelican-atom.xml",
-        ]
+        self.set_feeds(["://pelican-atom.xml"])
         webring.fetch_feeds(self.generators)
         self.assertEqual(len(self.get_fetched_articles()), 0)
 

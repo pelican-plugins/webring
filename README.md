@@ -70,17 +70,36 @@ Templates
 ---------
 
 The plugin makes available the resulting web feed articles in the variable
-`webring_articles`, which is a list of `Article` objects whose attributes are:
+`webring_articles`.
 
-- `title`: The article title.
-- `link`: The article URL.
-- `date`: The article date as a Pelican `utils.SafeDatetime` object, which can
-be used with [Pelican's Jinja filter `strftime`](https://docs.getpelican.com/en/stable/themes.html#date-formatting).
-- `summary`: The article summary, as provided in the web feed and modified
+All existing _date_ attributes are Pelican `utils.SafeDatetime` objects, which
+can be used with [Pelican's Jinja filter
+`strftime`](https://docs.getpelican.com/en/stable/themes.html#date-formatting).
+
+Each article contains all available properties in the original feed entry, for
+example:
+
+- `article.title`: The article title.
+- `article.link`: The article URL.
+- `article.date`: The article date as a Pelican `utils.SafeDatetime` object.
+- `article.summary`: The article summary, as provided in the web feed and modified
 according to this plugin's settings.
+- `article.description`: The original article summary, without cleaning or
+  truncation.
+
+Articles also contain information about the _source feed_, which can be
+accessed through `source_` prefixed attributes:
+
 - `source_title`: The title of the web feed.
 - `source_link`: A link to the web feed.
 - `source_id`: An identification field provided in some web feeds.
+
+If you access an attribute that is not present in the entry or source feed, an
+empty string will be returned, except for _dates_ (`published`, `updated`,
+`created` and `expired`) that `None` is returned.
+
+For a list of available entry and source feed attributes, [read the feedparser
+reference document](https://pythonhosted.org/feedparser/reference.html).
 
 You can use `webring_articles` in any kind of content type, including _pages_
 and _articles_. Read the following sections for examples on how to use this
