@@ -38,7 +38,7 @@ classifiers = [
 python = "^3.6"
 pelican = "^4.5"
 markdown = {version = "^3.1.1",optional = true}
-feedparser = "^5.2"
+feedparser = ">=6.0"
 
 [tool.poetry.dev-dependencies]
 pelican = { git = "https://github.com/getpelican/pelican.git" }
