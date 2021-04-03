@@ -3,3 +3,5 @@ poetry.lock
 *.egg-info
 venv
 .venv
+tags
+.python-version
