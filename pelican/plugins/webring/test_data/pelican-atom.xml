@@ -1,15 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Site with Pelican sample content</title><link href="http://example.com/" rel="alternate"></link><link href="http://example.com/pelican-atom.xml" rel="self"></link><id>http://example.com/</id><updated>2013-11-17T23:29:00+01:00</updated><entry><title>FILENAME_METADATA example</title><link href="http://example.com/filename_metadata-example.html" rel="alternate"></link><published>2012-11-30T00:00:00+01:00</published><updated>2012-11-30T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2012-11-30:/filename_metadata-example.html</id><content type="html">&lt;p&gt;Some cool stuff!&lt;/p&gt;
-</content></entry><entry><title>Second article</title><link href="http://example.com/second-article.html" rel="alternate"></link><published>2012-02-29T00:00:00+01:00</published><updated>2012-02-29T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2012-02-29:/second-article.html</id><content type="html">&lt;p&gt;This is some article, in english&lt;/p&gt;
-</content><category term="foo"></category><category term="bar"></category><category term="baz"></category></entry><entry><title>Deuxième article</title><link href="http://example.com/second-article-fr.html" rel="alternate"></link><published>2012-02-29T00:00:00+01:00</published><updated>2012-02-29T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2012-02-29:/second-article-fr.html</id><content type="html">&lt;p&gt;Ceci est un article, en français.&lt;/p&gt;
-</content><category term="foo"></category><category term="bar"></category><category term="baz"></category></entry><entry><title>A markdown powered article</title><link href="http://example.com/a-markdown-powered-article.html" rel="alternate"></link><published>2011-04-20T00:00:00+02:00</published><updated>2011-04-20T00:00:00+02:00</updated><author><name>davidag</name></author><id>tag:example.com,2011-04-20:/a-markdown-powered-article.html</id><content type="html">&lt;p&gt;You're mutually oblivious.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Site with Pelican sample content</title>
+  <link href="http://example.com/" rel="alternate"/>
+  <link href="http://example.com/pelican-atom.xml" rel="self"/>
+  <id>http://example.com/</id>
+  <updated>2013-11-17T23:29:00+01:00</updated>
+  <entry>
+    <title>FILENAME_METADATA example</title>
+    <link href="http://example.com/filename_metadata-example.html" rel="alternate"/>
+    <published>2012-11-30T00:00:00+01:00</published>
+    <updated>2012-11-30T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2012-11-30:/filename_metadata-example.html</id>
+    <content type="html">&lt;p&gt;Some cool stuff!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Second article</title>
+    <link href="http://example.com/second-article.html" rel="alternate"/>
+    <published>2012-02-29T00:00:00+01:00</published>
+    <updated>2012-02-29T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2012-02-29:/second-article.html</id>
+    <content type="html">&lt;p&gt;This is some article, in english&lt;/p&gt;
+</content>
+    <category term="foo"/>
+    <category term="bar"/>
+    <category term="baz"/>
+  </entry>
+  <entry>
+    <title>Deuxième article</title>
+    <link href="http://example.com/second-article-fr.html" rel="alternate"/>
+    <published>2012-02-29T00:00:00+01:00</published>
+    <updated>2012-02-29T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2012-02-29:/second-article-fr.html</id>
+    <content type="html">&lt;p&gt;Ceci est un article, en français.&lt;/p&gt;
+</content>
+    <category term="foo"/>
+    <category term="bar"/>
+    <category term="baz"/>
+  </entry>
+  <entry>
+    <title>A markdown powered article</title>
+    <link href="http://example.com/a-markdown-powered-article.html" rel="alternate"/>
+    <published>2011-04-20T00:00:00+02:00</published>
+    <updated>2011-04-20T00:00:00+02:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2011-04-20:/a-markdown-powered-article.html</id>
+    <content type="html">&lt;p&gt;You're mutually oblivious.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://example.com/unbelievable.html"&gt;a root-relative link to unbelievable&lt;/a&gt;
-&lt;a href="http://example.com/unbelievable.html"&gt;a file-relative link to unbelievable&lt;/a&gt;&lt;/p&gt;</content></entry><entry><title>Article 1</title><link href="http://example.com/article-1.html" rel="alternate"></link><published>2011-02-17T00:00:00+01:00</published><updated>2011-02-17T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2011-02-17:/article-1.html</id><content type="html">&lt;p&gt;Article 1&lt;/p&gt;
-</content></entry><entry><title>Article 2</title><link href="http://example.com/article-2.html" rel="alternate"></link><published>2011-02-17T00:00:00+01:00</published><updated>2011-02-17T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2011-02-17:/article-2.html</id><content type="html">&lt;p&gt;Article 2&lt;/p&gt;
-</content></entry><entry><title>Article 3</title><link href="http://example.com/article-3.html" rel="alternate"></link><published>2011-02-17T00:00:00+01:00</published><updated>2011-02-17T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2011-02-17:/article-3.html</id><content type="html">&lt;p&gt;Article 3&lt;/p&gt;
-</content></entry><entry><title>This is a super article !</title><link href="http://example.com/this-is-a-super-article.html" rel="alternate"></link><published>2010-12-02T10:14:00+01:00</published><updated>2013-11-17T23:29:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:example.com,2010-12-02:/this-is-a-super-article.html</id><summary type="html">&lt;p class="first last"&gt;Multi-line metadata should be supported
+&lt;a href="http://example.com/unbelievable.html"&gt;a file-relative link to unbelievable&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Article 1</title>
+    <link href="http://example.com/article-1.html" rel="alternate"/>
+    <published>2011-02-17T00:00:00+01:00</published>
+    <updated>2011-02-17T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2011-02-17:/article-1.html</id>
+    <content type="html">&lt;p&gt;Article 1&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Article 2</title>
+    <link href="http://example.com/article-2.html" rel="alternate"/>
+    <published>2011-02-17T00:00:00+01:00</published>
+    <updated>2011-02-17T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2011-02-17:/article-2.html</id>
+    <content type="html">&lt;p&gt;Article 2&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Article 3</title>
+    <link href="http://example.com/article-3.html" rel="alternate"/>
+    <published>2011-02-17T00:00:00+01:00</published>
+    <updated>2011-02-17T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2011-02-17:/article-3.html</id>
+    <content type="html">&lt;p&gt;Article 3&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>This is a super article !</title>
+    <link href="http://example.com/this-is-a-super-article.html" rel="alternate"/>
+    <published>2010-12-02T10:14:00+01:00</published>
+    <updated>2013-11-17T23:29:00+01:00</updated>
+    <author>
+      <name>Alexis Métaireau</name>
+    </author>
+    <id>tag:example.com,2010-12-02:/this-is-a-super-article.html</id>
+    <summary type="html">&lt;p class="first last"&gt;Multi-line metadata should be supported
 as well as &lt;strong&gt;inline markup&lt;/strong&gt;.&lt;/p&gt;
-</summary><content type="html">&lt;p&gt;Some content here !&lt;/p&gt;
+</summary>
+    <content type="html">&lt;p&gt;Some content here !&lt;/p&gt;
 &lt;div class="section" id="this-is-a-simple-title"&gt;
 &lt;h2&gt;This is a simple title&lt;/h2&gt;
 &lt;p&gt;And here comes the cool &lt;a class="reference external" href="http://books.couchdb.org/relax/design-documents/views"&gt;stuff&lt;/a&gt;.&lt;/p&gt;
@@ -21,13 +120,41 @@ as well as &lt;strong&gt;inline markup&lt;/strong&gt;.&lt;/p&gt;
 &lt;/pre&gt;
 &lt;p&gt;→ And now try with some utf8 hell: ééé&lt;/p&gt;
 &lt;/div&gt;
-</content><category term="foo"></category><category term="bar"></category><category term="foobar"></category></entry><entry><title>Oh yeah !</title><link href="http://example.com/oh-yeah.html" rel="alternate"></link><published>2010-10-20T10:14:00+02:00</published><updated>2010-10-20T10:14:00+02:00</updated><author><name>Alexis Métaireau</name></author><id>tag:example.com,2010-10-20:/oh-yeah.html</id><content type="html">&lt;div class="section" id="why-not"&gt;
+</content>
+    <category term="foo"/>
+    <category term="bar"/>
+    <category term="foobar"/>
+  </entry>
+  <entry>
+    <title>Oh yeah !</title>
+    <link href="http://example.com/oh-yeah.html" rel="alternate"/>
+    <published>2010-10-20T10:14:00+02:00</published>
+    <updated>2010-10-20T10:14:00+02:00</updated>
+    <author>
+      <name>Alexis Métaireau</name>
+    </author>
+    <id>tag:example.com,2010-10-20:/oh-yeah.html</id>
+    <content type="html">&lt;div class="section" id="why-not"&gt;
 &lt;h2&gt;Why not ?&lt;/h2&gt;
 &lt;p&gt;After all, why not ? It's pretty simple to do it, and it will allow me to write my blogposts in rst !
 YEAH !&lt;/p&gt;
 &lt;img alt="alternate text" src="http://example.com/pictures/Sushi.jpg" style="width: 600px; height: 450px;" /&gt;
 &lt;/div&gt;
-</content><category term="oh"></category><category term="bar"></category><category term="yeah"></category></entry><entry><title>Unbelievable !</title><link href="http://example.com/unbelievable.html" rel="alternate"></link><published>2010-10-15T20:30:00+02:00</published><updated>2010-10-15T20:30:00+02:00</updated><author><name>davidag</name></author><id>tag:example.com,2010-10-15:/unbelievable.html</id><summary type="html">&lt;p&gt;Or completely awesome. Depends the needs.&lt;/p&gt;
+</content>
+    <category term="oh"/>
+    <category term="bar"/>
+    <category term="yeah"/>
+  </entry>
+  <entry>
+    <title>Unbelievable !</title>
+    <link href="http://example.com/unbelievable.html" rel="alternate"/>
+    <published>2010-10-15T20:30:00+02:00</published>
+    <updated>2010-10-15T20:30:00+02:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2010-10-15:/unbelievable.html</id>
+    <summary type="html">&lt;p&gt;Or completely awesome. Depends the needs.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://example.com/a-markdown-powered-article.html"&gt;a root-relative link to markdown-article&lt;/a&gt;
 &lt;a class="reference external" href="http://example.com/a-markdown-powered-article.html"&gt;a file-relative link to markdown-article&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="testing-sourcecode-directive"&gt;
@@ -38,7 +165,8 @@ YEAH !&lt;/p&gt;
 &lt;div class="section" id="testing-another-case"&gt;
 &lt;h2&gt;Testing another case&lt;/h2&gt;
 &lt;p&gt;This will now have a line number in 'custom' since it's the default in
-pelican.conf, it will …&lt;/p&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;Or completely awesome. Depends the needs.&lt;/p&gt;
+pelican.conf, it will …&lt;/p&gt;&lt;/div&gt;</summary>
+    <content type="html">&lt;p&gt;Or completely awesome. Depends the needs.&lt;/p&gt;
 &lt;p&gt;&lt;a class="reference external" href="http://example.com/a-markdown-powered-article.html"&gt;a root-relative link to markdown-article&lt;/a&gt;
 &lt;a class="reference external" href="http://example.com/a-markdown-powered-article.html"&gt;a file-relative link to markdown-article&lt;/a&gt;&lt;/p&gt;
 &lt;div class="section" id="testing-sourcecode-directive"&gt;
@@ -71,5 +199,18 @@ pelican.conf, it will have nothing in default.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Lovely.&lt;/p&gt;
 &lt;/div&gt;
-</content></entry><entry><title>The baz tag</title><link href="http://example.com/tag/baz.html" rel="alternate"></link><published>2010-03-14T00:00:00+01:00</published><updated>2010-03-14T00:00:00+01:00</updated><author><name>davidag</name></author><id>tag:example.com,2010-03-14:/tag/baz.html</id><content type="html">&lt;p&gt;This article overrides the listening of the articles under the &lt;em&gt;baz&lt;/em&gt; tag.&lt;/p&gt;
-</content></entry></feed>
+</content>
+  </entry>
+  <entry>
+    <title>The baz tag</title>
+    <link href="http://example.com/tag/baz.html" rel="alternate"/>
+    <published>2010-03-14T00:00:00+01:00</published>
+    <updated>2010-03-14T00:00:00+01:00</updated>
+    <author>
+      <name>davidag</name>
+    </author>
+    <id>tag:example.com,2010-03-14:/tag/baz.html</id>
+    <content type="html">&lt;p&gt;This article overrides the listening of the articles under the &lt;em&gt;baz&lt;/em&gt; tag.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
