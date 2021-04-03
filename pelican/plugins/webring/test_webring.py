@@ -79,6 +79,7 @@ class WebringTest(unittest.TestCase):
         for a in articles:
             self.assertIsInstance(a.published, utils.SafeDatetime)
             self.assertIsInstance(a.updated, utils.SafeDatetime)
+            self.assertEqual(a.date, a.published)
             self.assertEqual(a.created, None)
             self.assertEqual(a.expired, None)
             self.assertNotEqual(a.author, "")

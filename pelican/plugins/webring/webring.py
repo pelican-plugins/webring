@@ -43,6 +43,11 @@ class Article:
                 return get_entry_datetime(key, self._entry)
             elif key == "summary":
                 return get_entry_summary(self._entry)
+            elif key == "date":
+                # If 'date' is not present, use 'published' for compatibility with old
+                # webring versions (<1.2.0).
+                key = key if key in self._entry else "published"
+                return get_entry_datetime(key, self._entry)
             else:
                 return self._entry[key]
         except KeyError:
