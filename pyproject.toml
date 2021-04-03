@@ -64,6 +64,7 @@ markdown = ["markdown"]
 project-name = "Webring"
 git-username = "botpub"
 git-email = "botpub@autopub.rocks"
+append-github-contributor = true
 
 [tool.isort]
 # Maintain compatibility with Black
