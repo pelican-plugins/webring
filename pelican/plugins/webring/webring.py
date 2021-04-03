@@ -18,7 +18,7 @@ try:
 except ImportError:
     warning("Webring Plugin: Failed to load dependency (feedparser)")
 
-WEBRING_VERSION = "0.1"
+WEBRING_VERSION = "1.3.0"
 WEBRING_FEED_URLS_STR = "WEBRING_FEED_URLS"
 WEBRING_MAX_ARTICLES_STR = "WEBRING_MAX_ARTICLES"
 WEBRING_ARTICLES_PER_FEED_STR = "WEBRING_ARTICLES_PER_FEED"
