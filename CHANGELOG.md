@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+1.3.0 - 2021-04-03
+------------------
+
+- Fix #11 (AttributeError accessing `date` entry attribute).
+- Update Webring User Agent version.
+- Update `feedparser` to 6.x.
+
 1.2.0 - 2020-08-25
 ------------------
 
