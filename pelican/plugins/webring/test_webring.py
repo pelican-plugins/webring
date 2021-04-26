@@ -12,9 +12,9 @@ import unittest
 from pelican.generators import Generator
 from pelican.settings import DEFAULT_CONFIG
 from pelican.tests.support import get_context, get_settings, module_exists
+import webring
 
 from pelican import utils
-import webring
 
 
 class NullGenerator(Generator):
