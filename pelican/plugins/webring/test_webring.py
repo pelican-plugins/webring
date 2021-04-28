@@ -9,11 +9,11 @@ import os
 from types import SimpleNamespace
 import unittest
 
+from pelican import utils
 from pelican.generators import Generator
 from pelican.settings import DEFAULT_CONFIG
 from pelican.tests.support import get_context, get_settings, module_exists
 
-from pelican import utils
 import webring
 
 
