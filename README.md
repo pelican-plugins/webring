@@ -132,7 +132,7 @@ Edit the `notmyidea/templates/base.html` file and make it look like this:
 If there were no links or social widgets, the result would be like in the
 image below:
 
-![Footer Webring](https://github.com/pelican-plugins/webring/raw/master/webring-footer.jpg)
+![Footer Webring](https://github.com/pelican-plugins/webring/raw/main/webring-footer.jpg)
 
 ### Adding a feed aggregation page
 
@@ -180,7 +180,7 @@ TEMPLATE_PAGES = { 'feed-aggregation.html': 'feed-aggregation/index.html' }
 
 The final result would be as in the image below:
 
-![Page Webring](https://github.com/pelican-plugins/webring/raw/master/webring-page.jpg)
+![Page Webring](https://github.com/pelican-plugins/webring/raw/main/webring-page.jpg)
 
 Contributing
 ------------
