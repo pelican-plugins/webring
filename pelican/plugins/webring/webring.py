@@ -5,8 +5,8 @@ Webring plugin for Pelican
 A plugin to create a webring or feed aggregation in your web site from a list
 of web feeds.
 """
-from logging import warning
 import concurrent.futures
+from logging import warning
 from operator import attrgetter
 import re
 from urllib.error import URLError
