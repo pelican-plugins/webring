@@ -9,12 +9,12 @@ import os
 from types import SimpleNamespace
 import unittest
 
-import webring
-
 from pelican import utils
 from pelican.generators import Generator
 from pelican.settings import DEFAULT_CONFIG
 from pelican.tests.support import get_context, get_settings, module_exists
+
+import webring
 
 
 class NullGenerator(Generator):
@@ -42,9 +42,7 @@ class WebringTest(unittest.TestCase):
 
     def feed_url(self, feed_type):
         test_data_path = os.path.join(os.path.dirname(__file__), "test_data")
-        return "file://" + os.path.join(
-            test_data_path, f"pelican-{feed_type}.xml"
-        )
+        return "file://" + os.path.join(test_data_path, f"pelican-{feed_type}.xml")
 
     def set_feeds(self, feeds=None):
         default = [self.feed_url("rss"), self.feed_url("atom")]
