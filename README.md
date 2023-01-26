@@ -1,6 +1,7 @@
 # Webring
 
-[![Build Status](https://github.com/pelican-plugins/webring/workflows/build/badge.svg)](https://github.com/pelican-plugins/webring/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/webring/main.yml?branch=main)](https://github.com/pelican-plugins/webring/actions)
+[![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
 
 This Pelican plugin adds a webring or feed aggregation to your site from a list
 of web feeds.
@@ -20,7 +21,7 @@ Installation
 
 This plugin can be installed via:
 
-    pip install pelican-webring
+    python -m pip install pelican-webring
 
 Settings
 --------
