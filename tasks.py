@@ -69,14 +69,12 @@ def tools(c):
     """Install development tools in the virtual environment if not already on PATH."""
     for tool in TOOLS:
         if not which(tool):
-            print(f"** Installing {tool}.")
             c.run(f"{CMD_PREFIX}pip install {tool}")
 
 
 @task
 def precommit(c):
-    """Install pre-commit hooks to `.git/hooks/pre-commit`."""
-    print("** Installing pre-commit hooks.")
+    """Install pre-commit hooks to .git/hooks/pre-commit."""
     c.run(f"{PRECOMMIT} install")
 
 
