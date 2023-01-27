@@ -4,3 +4,9 @@ venv
 .venv
 tags
 .python-version
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Unit test / coverage reports
+.pytest_cache/

@@ -5,6 +5,7 @@ Webring plugin for Pelican
 A plugin to create a webring or feed aggregation in your web site from a list
 of web feeds.
 """
+import concurrent.futures
 from logging import warning
 from operator import attrgetter
 import re
@@ -87,10 +88,20 @@ def initialized(pelican):
 
 def fetch_feeds(generators):
     fetched_articles = []
-    for feed_url in settings[WEBRING_FEED_URLS_STR]:
+
+    def fetch(feed_url):
         feed_html = get_feed_html(feed_url)
         if feed_html:
-            fetched_articles.extend(get_feed_articles(feed_html, feed_url))
+            return get_feed_articles(feed_html, feed_url)
+
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        futures = []
+        for feed_url in settings[WEBRING_FEED_URLS_STR]:
+            futures.append(executor.submit(fetch, feed_url=feed_url))
+        for future in concurrent.futures.as_completed(futures):
+            articles = future.result()
+            if articles is not None:
+                fetched_articles.extend(articles)
 
     fetched_articles = sorted(fetched_articles, key=attrgetter("date"), reverse=True)
 
