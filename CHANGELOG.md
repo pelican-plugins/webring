@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.4.0 - 2023-01-27
+------------------
+
+- Retrieve feeds from configured URLs in parallel using threads (implements #9).
+
 1.3.0 - 2021-04-03
 ------------------
 
