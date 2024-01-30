@@ -1,6 +1,4 @@
-"""
-Webring plugin for Pelican
-==========================
+"""Webring plugin for Pelican.
 
 A plugin to create a webring or feed aggregation in your web site from a list
 of web feeds.
@@ -35,7 +33,7 @@ class Article:
         self._source = source
 
     def __getattr__(self, key):
-        """Lazy build special attributes"""
+        """Lazy build special attributes."""
         try:
             if key.startswith("source_"):
                 entry_id = key.partition("_")[2]
@@ -119,8 +117,7 @@ def get_feed_html(feed_url):
         req.add_header(
             "User-Agent",
             (
-                "Webring Pelican plugin/{} "
-                + "+https://github.com/pelican/pelican-plugins"
+                "Webring Pelican plugin/{} +https://github.com/pelican/pelican-plugins"
             ).format(WEBRING_VERSION),
         )
         return urlopen(req).read().decode("utf-8")
@@ -142,7 +139,7 @@ def get_feed_articles(feed_html, feed_url):
 
     if parsed_feed.bozo:
         warning(
-            "webring plugin: possible malformed or invalid feed (%s). " "Error=%s",
+            "webring plugin: possible malformed or invalid feed (%s). Error=%s",
             feed_url,
             parsed_feed.bozo_exception,
         )
@@ -168,8 +165,7 @@ def get_entry_summary(entry):
     # https://stackoverflow.com/a/12982689/11441
     def cleanhtml(raw_html):
         cleanr = re.compile("<.*?>")
-        cleantext = re.sub(cleanr, "", raw_html)
-        return cleantext
+        return re.sub(cleanr, "", raw_html)
 
     try:
         # this will get the first of 'summary' and 'subtitle'

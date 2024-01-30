@@ -1,4 +1,4 @@
-"""Tests for webring plugin
+"""Tests for webring plugin.
 
 Test Atom and RSS feeds have been generated using Pelican itself using the
 contents of its `samples/content` folder.
@@ -13,7 +13,6 @@ from pelican import utils
 from pelican.generators import Generator
 from pelican.settings import DEFAULT_CONFIG
 from pelican.tests.support import get_context, get_settings, module_exists
-
 import webring
 
 
@@ -69,7 +68,9 @@ class WebringTest(unittest.TestCase):
         self.assertEqual(list(map(itemgetter(1), feed_counts.items())), [3, 3])
 
     def test_common_attributes(self):
-        """These are attributes present in ALL articles in both RSS and Atom test feeds.
+        """Test common attributes.
+
+        These are attributes present in ALL articles in both RSS and Atom test feeds.
         Optional attributes are not checked.
         """
         webring.fetch_feeds(self.generators)
