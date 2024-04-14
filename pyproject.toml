@@ -39,7 +39,7 @@ Homepage = "https://github.com/pelican-plugins/webring"
 "Funding" = "https://donate.getpelican.com/"
 "Issue Tracker" = "https://github.com/pelican-plugins/webring/issues"
 
-[project.optional_dependencies]
+[project.optional-dependencies]
 markdown = [
     "markdown"
 ]
