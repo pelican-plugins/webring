@@ -3,6 +3,7 @@
 Test Atom and RSS feeds have been generated using Pelican itself using the
 contents of its `samples/content` folder.
 """
+
 from collections import Counter
 from operator import attrgetter, itemgetter
 import os

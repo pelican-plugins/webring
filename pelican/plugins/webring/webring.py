@@ -3,6 +3,7 @@
 A plugin to create a webring or feed aggregation in your web site from a list
 of web feeds.
 """
+
 import concurrent.futures
 from logging import warning
 from operator import attrgetter
@@ -117,8 +118,8 @@ def get_feed_html(feed_url):
         req.add_header(
             "User-Agent",
             (
-                "Webring Pelican plugin/{} +https://github.com/pelican/pelican-plugins"
-            ).format(WEBRING_VERSION),
+                f"Webring Pelican plugin/{WEBRING_VERSION} +https://github.com/pelican/pelican-plugins"
+            ),
         )
         return urlopen(req).read().decode("utf-8")
     except URLError as e:
