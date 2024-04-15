@@ -49,7 +49,7 @@ markdown = [
 [tool.pdm.dev-dependencies]
 lint = [
     "invoke>=2.2.0",
-    "ruff>=0.1",
+    "ruff>=0.3.7,<0.4.0"
 ]
 test = [
     "markdown>=3.4",
@@ -74,7 +74,7 @@ git-username = "botpub"
 git-email = "52496925+botpub@users.noreply.github.com"
 append-github-contributor = true
 
-[tool.ruff]
+[tool.ruff.lint]
 select = [
   "B",   # flake8-bugbear
   "BLE", # flake8-blind-except
@@ -118,7 +118,7 @@ ignore = [
   "RET505",  # use explicit `return` at end of function able to return non-`None` value
 ]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 combine-as-imports = true
 force-sort-within-sections = true
 known-first-party = ["pelican"]
