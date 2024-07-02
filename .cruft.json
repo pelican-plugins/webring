@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/getpelican/cookiecutter-pelican-plugin",
+  "commit": "f9a088515d09675d433595982ae643c3fe323c50",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "plugin_name": "Webring",
+      "repo_name": "webring",
+      "package_name": "webring",
+      "distribution_name": "pelican-webring",
+      "version": "1.4.0",
+      "description": "Webring is a Pelican plugin that adds external article summaries to your site from a list of web feeds",
+      "authors": "{name = \"David Alfonso\", email = \"developer@davidalfonso.es\"}, {name = \"Justin Mayer\", email = \"entroP@gmail.com\"}",
+      "keywords": "\"pelican\", \"plugin\"",
+      "readme": "README.md",
+      "contributing": "CONTRIBUTING.md",
+      "license": "GNU Affero General Public License v3|AGPL-3.0",
+      "repo_url": "https://github.com/pelican-plugins/webring",
+      "dev_status": "5 - Production/Stable",
+      "tests_exist": true,
+      "python_version": ">=3.8.1,<4.0",
+      "pelican_version": ">=4.5",
+      "_template": "https://github.com/getpelican/cookiecutter-pelican-plugin"
+    }
+  },
+  "directory": null
+}
