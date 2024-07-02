@@ -15,7 +15,7 @@ classifiers = [
     "Framework :: Pelican",
     "Framework :: Pelican :: Plugins",
     "Intended Audience :: End Users/Desktop",
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -36,13 +36,11 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/pelican-plugins/webring"
-"Funding" = "https://donate.getpelican.com/"
 "Issue Tracker" = "https://github.com/pelican-plugins/webring/issues"
+Funding = "https://donate.getpelican.com/"
 
 [project.optional-dependencies]
-markdown = [
-    "markdown"
-]
+markdown = ["markdown>=3.4"]
 
 [tool.pdm]
 
@@ -55,7 +53,7 @@ test = [
     "markdown>=3.4",
     "pytest>=7.0",
     "pytest-cov>=4.0",
-    "pytest-sugar>=0.9.7",
+    "pytest-sugar>=1.0",
 ]
 
 [tool.pdm.build]
@@ -66,7 +64,7 @@ source-includes = [
     "webring-page.jpg",
 ]
 includes = ["pelican/"]
-excludes = ["**/test_data/**", "tasks.py"]
+excludes = ["**/.DS_Store", "**/test_data/**", "tasks.py"]
 
 [tool.autopub]
 project-name = "Webring"
@@ -110,7 +108,6 @@ ignore = [
   "D203",    # blank line before class docstring
   "D213",    # multi-line docstring summary should start at the second line
   "ISC001",  # avoid implicitly concatenated strings on a single line
-  "PGH004",  # use specific rule codes when using `NOQA`
   "PLE1205", # use appropriate number of arguments for format string
   "PLR2004", # avoid using magic values in comparison
   "PLW0603", # avoid using global statements

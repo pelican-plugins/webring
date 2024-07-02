@@ -1,1 +1,1 @@
-from .webring import *  # NOQA
+from .webring import *  # noqa: F403,PGH004,RUF100
