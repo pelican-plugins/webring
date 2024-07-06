@@ -2,6 +2,8 @@
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/webring/main.yml?branch=main)](https://github.com/pelican-plugins/webring/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-webring)](https://pypi.org/project/pelican-webring/)
+[![Downloads](https://img.shields.io/pypi/dm/pelican-webring)](https://pypi.org/project/pelican-webring/)
+![License](https://img.shields.io/pypi/l/pelican-webring?color=blue)
 
 This Pelican plugin adds a webring or feed aggregation to your site from a list
 of web feeds.
@@ -191,6 +193,11 @@ Contributing
 Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
 
 To start contributing to this plugin, review the [Contributing to Pelican][] documentation, beginning with the **Contributing Code** section.
+
+License
+-------
+
+This project is licensed under the AGPL 3.0 license.
 
 [existing issues]: https://github.com/pelican-plugins/webring/issues
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
